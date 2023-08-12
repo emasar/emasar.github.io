@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION FORM STORAGE</title>
+    <link rel="stylesheet" href="registration.css">
+    
+   </head>
+   <body>
+    
+    <!----------------------------Create a Form------------------------------->
+    <div class="container">
+      <div class="card">
+        <form action="#">
+          <h1><span>Registration</span>Form</h1>
+
+          <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name">
+          </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+            <img src="">
+          </div>
+
+          <div class="form-group">
+            <label for="cpassword">Password</label>
+            <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password">
+            <img src="">
+          </div>
+
+          <div class="text-center">
+            <button type="button" onclick="saveData()" class="btn btn-primary" id="save_btn">Submit</button>
+              <button type="rest" class="btn btn-warning" id="">Rest</button>
+          </div>
+
+          <div class="account-have">
+            <a href="#">Forget Password</a>
+            <a href="login.html">Have an account please login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+   </body>
+   <script>
+      function saveData(){
+        let fname, lname, email, password, cpassword;
+        fname = document.getElementById("fname").value;
+        lname = document.getElementById("lname").value;
+        email = document.getElementById("email").value;
+        password = document.getElementById("password").value;
+        cpassword = document.getElementById("cpassword").value;
+
+        <!---------Insert fname, lname, email,password &cpassword--------------->
+        //localStorage.setItem("fname",fname);
+        //localStorage.setItem("lname",lname);
+        //localStorage.setItem("email",email);
+        //localStorage.setItem("password",password);
+        //localStorage.setItem("cpassword",cpassword);
+
+        //Create array to keep every entries to avoid overwriting previous entry.
+        let user_records=new Array();
+        user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+        if(user_records.some((v)=>{
+          return v.email==email
+        })){
+          alert("Duplicate Data");
+
+        }
+        else{
+          user_records.push({
+            "fname":fname,
+            "lname":lname,
+            "email":email,
+            "password":password,
+            "cpassword":cpassword
+          }) 
+          //Now store the new user data in local storage.
+          localStorage.setItem("users",JSON.stringify(user_records));
+        }
+          
+      }
+   </script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGIN</title>
+    <link rel="stylesheet" href="signin-up.css">
+   </head>
+    <body>
+      <div class="main-parent">
+        <div class="form-wrap">
+          <form role="form" onsubmit="sigIn(event);" autocomplete="on">
+            <h1><span>Sign in</span></h1>
+            <div class="single-input">
+              <input required type="email" id="email" placeholder="Email address">
+            </div>
+            <div class="single-input">
+              <input required type="password" name="pwd" id="pwd" placeholder="Password">
+            </div>
+            
+            <div class="submit-button">
+              <button type="submit">Sign In</button>
+            </div>
+            <div class="account-have">
+              <a href="#">Forget Password</a>
+              <a href="sign up.html">Create an account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <script type="text/javascript" src="./website.js"></script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formdata.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+    <title>Registration</title>
+   </head>
+   <body>
+    
+    <!---------------Create a Form--------------------------->
+    <div class="container">
+      <div class="card">
+        <h2>Registration Form</h2>
+        <form action="#">
+          <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+          </div>
+
+          <div class="text-center">
+            <button type="button" onclick="saveData()" class="btn btn-primary" id="save_btn">Submit</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </body>
+  <!----Creating function & Variables to access data from input box--->
+  <script>
+    function saveData(){
+      let fname, lname, email, password;
+      fname=document.getElementById("fname").value;
+      lname=document.getElementById("lname").value;
+      email=document.getElementById("email").value;
+      password=document.getElementById("password").value;
+      
+      //Insert fname, lname, email and password into localstorage
+      //localStorage.setItem("fname",fname);
+      //localStorage.setItem("lname",lname);
+      //localStorage.setItem("email",email);
+      //localStorage.setItem("password",password);
+
+      //After every new insertion, the previous data will be replaced by the newer one and this is not what we wanted.The next step will save all data inserted in Array format. So we shall comment the locaalStorage to proceed.//
+
+      let user_records=new Array();
+      //This line will check if users information is stored then retrieve or else it will return empty.
+      user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+     if(user_records.some((v)=>{
+      return v.email==email
+     })){
+      alert("Duplicate Data");
+     }
+     else{
+         user_records.push({
+          "fname":fname,
+          "lname":lname,
+          "email":email,
+          "password":password
+         })
+         //Now store the new user data in localstorage after checking for duplicate.
+         localStorage.setItem("users",JSON.stringify(user_records));
+         window.location.href="fdt-login.html";
+     }
+
+    }
+  </script>
+</html>

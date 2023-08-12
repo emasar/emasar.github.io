@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="registration.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   </head>
+   
+   <body>
+    <div class="container">
+      <div class="card">
+        <h2>Profile Page</h2>
+        <button  onclick="logOut()" style="float: right; color: white;" >Logout</button>
+        <button class=""><a href="resume-cv.html">HOME</button>
+        <hr>
+        <h3>Welcome</h3>
+        <!---------------Retriving the current session "name" from local storage--------------------------->
+        <h4>Name:
+          <script>
+            document.write(localStorage.getItem("fname"));
+          </script>
+        </h4>
+        <h5>Your Email is:
+          <script>
+            document.write(localStorage.getItem("email"));
+          </script>
+        </h5>
+      </div>
+    </div>
+   </body>
+   <script>
+    function logOut(){
+      localStorage.removeItem("fname");
+      localStorage.removeItem("email");
+      window.location.href="fdt-login.html"
+    }
+   </script>
+</html>
